@@ -2,7 +2,7 @@ namespace WarshallAlgorithm;
 
 public class GraphGenerator
 {
-    public static char[,] GenerateGraph(int n, int q)
+    public static char[,] GenerateGraph(int n, int q, char or)
     {
         char[,] matrix = new char[n,n];
 
@@ -14,26 +14,45 @@ public class GraphGenerator
             }
         }
         
-        int maxEdges = n * (n - 1) / 2;
-        int edges = maxEdges * q / 200;
-
-        HashSet <(int,int)> listDistances = new HashSet<(int, int)>();
+        HashSet <(int,int)> listEdges = new HashSet<(int, int)>();
         Random rnd = new Random();
 
-        while (edges > 0)
-        { 
-            int i = rnd.Next(1, n);
-            int j = rnd.Next(0, i);
-
-            if (!listDistances.Contains((i,j)))
+        if (or == '+')
+        {
+            int maxEdges = n * (n - 1);
+            int edges = maxEdges * q / 100;
+            
+            while (edges > 0)
             {
-                listDistances.Add((i,j));
-                listDistances.Add((j,i));
-                edges--;
+                int i = rnd.Next(0, n);
+                int j = rnd.Next(0, n);
+
+                if (!listEdges.Contains((i, j)) && i != j)
+                {
+                    listEdges.Add((i,j));
+                    edges--;
+                }
+            }
+        }
+        else
+        {
+            int maxEdges = n * (n - 1) / 2;
+            int edges = maxEdges * q / 100;
+            while (edges > 0)
+            { 
+                int i = rnd.Next(1, n); 
+                int j = rnd.Next(0, i);
+                
+                if (!listEdges.Contains((i,j))) 
+                { 
+                    listEdges.Add((i,j)); 
+                    listEdges.Add((j,i)); 
+                    edges--;
+                }
             }
         }
 
-        foreach (var point in listDistances)
+        foreach (var point in listEdges)
         {
             matrix[point.Item1, point.Item2] = '1';
         }
