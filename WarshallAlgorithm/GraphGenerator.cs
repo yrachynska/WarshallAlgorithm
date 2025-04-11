@@ -2,15 +2,15 @@ namespace WarshallAlgorithm;
 
 public class GraphGenerator
 {
-    public static char[,] GenerateGraph(int n, int q, char or)
+    public static int[,] GenerateGraph(int n, int q, char or)
     {
-        char[,] matrix = new char[n,n];
+        int[,] matrix = new int[n,n];
 
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                matrix[i, j] = '0';
+                matrix[i, j] = 0;
             }
         }
         
@@ -54,13 +54,13 @@ public class GraphGenerator
 
         foreach (var point in listEdges)
         {
-            matrix[point.Item1, point.Item2] = '1';
+            matrix[point.Item1, point.Item2] = 1;
         }
         
         return matrix;
     }
 
-    public static void Print(char[,] matrix)
+    public static void Print(int[,] matrix)
     {
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
