@@ -6,9 +6,9 @@ public static class Experiment
 {
     public static void Runs()
     {
-        int[] sizes = { 5, 10, 50, 100 };
-        int[] percent = { 25, 50, 75 };
-        int runs = 3;
+        int[] sizes = {20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
+        int[] percent = {20, 40, 60, 80, 100};
+        int runs = 20;
 
         foreach (int n in sizes)
         {
