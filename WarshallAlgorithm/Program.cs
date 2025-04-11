@@ -13,3 +13,5 @@ GraphGenerator.Print(graph);
 Console.WriteLine("Transitive closure of a graph:");
 int[,] closure = Warshall.WarshallAlgorithm(graph);
 Warshall.PrintMatrix(closure);
+
+Experiment.Runs();
